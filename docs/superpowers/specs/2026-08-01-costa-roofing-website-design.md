@@ -279,7 +279,9 @@ Do not convert individual review anecdotes into universal claims. In particular:
 
 Provide unique, factual titles and descriptions for every route. Use one `Organization` JSON-LD record containing only `@context`, `@type: "Organization"`, `name`, `url` when a production origin is configured, `telephone`, `sameAs` with the approved Facebook URL, and `areaServed` with the literal value `Harrison and surrounding cities`. Do not include `address`, `openingHours`, `aggregateRating`, `review`, legal name, license, insurance, warranty, certification, or price fields. The visible rating and 24-hour call statement are content snapshots, not structured business-opening claims.
 
-The public website origin has not been supplied. Use the `PUBLIC_SITE_ORIGIN` validation contract in Section 7.2. When it is configured, every canonical, `og:url`, sitemap URL, and JSON-LD `url` is built as `PUBLIC_SITE_ORIGIN + PUBLISH_BASE_PATH + route + trailing slash`; the organization URL uses the same builder with `/`. When it is absent, omit canonical tags, `og:url`, and the JSON-LD `url`; generate an empty sitemap URL set; and emit `robots.txt` with `User-agent: *` and `Disallow: /`. Never use localhost, a Facebook URL, or an invented domain as the production origin.
+The public website origin has not been supplied. Use the `PUBLIC_SITE_ORIGIN` validation contract in Section 7.2. When it is configured, every canonical, `og:url`, sitemap URL, and JSON-LD `url` is built as `PUBLIC_SITE_ORIGIN + PUBLISH_BASE_PATH + route + trailing slash`; the organization URL uses the same builder with `/`. Every route then emits `index, follow` metadata. The configured robots content allows the configured base path and names the absolute sitemap. For an empty base path it uses `Allow: /`; for a prefixed build it uses `Disallow: /` plus the more-specific `Allow: {PUBLISH_BASE_PATH}/`. A public deployment is not approved until that robots content is served from the origin-level `/robots.txt`, even when the site itself lives beneath a prefix.
+
+When `PUBLIC_SITE_ORIGIN` is absent, omit canonical tags, `og:url`, and the JSON-LD `url`; generate an empty sitemap URL set; emit `robots.txt` with `User-agent: *` and `Disallow: /`; and, critically, emit `noindex, nofollow` metadata on every route. The per-route directive is the authoritative preview safeguard because a prefixed static export cannot guarantee control of the origin-level robots file. Never use localhost, a Facebook URL, or an invented domain as the production origin.
 
 ### 12.1 Privacy route copy contract
 
@@ -318,7 +320,7 @@ Do not add cookie, retention, deletion, security, regulatory, or data-controller
 - If WebGL fails, preserve the authentic fallback image, headline, proof line, and phone CTA.
 - If enhanced scrolling fails, native scrolling remains intact.
 
-For the production build on Lighthouse mobile simulation using slow 4G and 4× CPU slowdown, target Largest Contentful Paint at or below `2.5s`, Cumulative Layout Shift at or below `0.1`, and Total Blocking Time at or below `200ms`. The initial page must not wait for the WebGL chunk to render the hero content or phone CTA. Mobile hero derivatives must remain at or below `220KB`, desktop hero derivatives at or below `350KB`, and no below-the-fold project image may preload.
+For the production build on Lighthouse mobile simulation using slow 4G and 4× CPU slowdown, use the median of three runs and target Largest Contentful Paint at or below `2.5s`, Cumulative Layout Shift at or below `0.1`, and Total Blocking Time at or below `200ms`. The initial page must not wait for the WebGL chunk to render the hero content or phone CTA. Mobile hero derivatives must remain at or below `220KB`, desktop hero derivatives at or below `350KB`, and no below-the-fold project image may preload.
 
 ## 15. Testing and Acceptance Criteria
 
@@ -331,6 +333,7 @@ For the production build on Lighthouse mobile simulation using slow 4G and 4× C
 - Content guards scan rendered text, metadata, JSON-LD, and route content records case-insensitively. They reject bracketed placeholders and the following canonical unsupported phrases: `best`, `number one`, `#1`, `top-rated`, `lowest price`, `free estimate`, `free inspection`, `free roof`, `free replacement`, `same-day`, `24/7`, `emergency`, `emergency tarping`, `guaranteed response`, `lifetime roof`, `lifetime warranty`, `insurance will pay`, `no out-of-pocket`, `cover your deductible`, `licensed`, `insured`, `bonded`, `certified`, `financing available`, and `commercial roofing`. Whole-word matching is required for single words; punctuation and capitalization do not bypass a match. Source documentation and the unrendered original review corpus are outside the scan.
 - No email, form, fake confirmation, street address, emergency claim, legal name, license number, warranty, financing, or insurance claim appears in the rendered site.
 - Metadata uses the centralized facts and omits fake public origins.
+- Automated metadata assertions cover canonical, `og:url`, JSON-LD `url`, sitemap, per-route robots metadata, and robots-file output for configured and unconfigured origins with both empty and prefixed base paths.
 
 ### 15.2 Browser and responsive checks
 
