@@ -19,6 +19,10 @@ describe("GitHub Pages deployment", () => {
     expect(workflow).toContain(
       "PUBLIC_SITE_ORIGIN: https://demonstration-test.github.io",
     );
+    expect(workflow).not.toMatch(/runs-on: ubuntu-latest\s+env:/);
+    expect(workflow.match(/PUBLISH_BASE_PATH: \/Costa-s-Roofing/g)).toHaveLength(
+      2,
+    );
     expect(workflow).toContain("pages: write");
     expect(workflow).toContain("id-token: write");
     expect(workflow).toContain("path: ./out");
