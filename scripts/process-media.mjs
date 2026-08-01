@@ -35,16 +35,25 @@ const jobs = [
   },
   {
     source: "FB-PROJECT-04.jpg",
+    output: "hero-roof-mobile.avif",
+    width: 780,
+    height: 1040,
+    fit: "cover",
+    format: "avif",
+    quality: 54,
+  },
+  {
+    source: "FB-PROJECT-04.jpg",
     output: "hero-roof-mobile.webp",
     width: 780,
     height: 1040,
     fit: "cover",
-    quality: 75,
+    quality: 68,
   },
 ];
 
 for (const job of jobs) {
-  await sharp(path.join(sourceDirectory, job.source))
+  const image = sharp(path.join(sourceDirectory, job.source))
     .rotate()
     .resize({
       width: job.width,
@@ -52,9 +61,17 @@ for (const job of jobs) {
       fit: job.fit,
       position: "centre",
       withoutEnlargement: false,
-    })
-    .webp({ quality: job.quality, effort: 6 })
-    .toFile(path.join(outputDirectory, job.output));
+    });
+
+  if (job.format === "avif") {
+    await image
+      .avif({ quality: job.quality, effort: 6 })
+      .toFile(path.join(outputDirectory, job.output));
+  } else {
+    await image
+      .webp({ quality: job.quality, effort: 6 })
+      .toFile(path.join(outputDirectory, job.output));
+  }
 }
 
 console.log(`Created ${jobs.length} optimized media files.`);

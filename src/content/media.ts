@@ -1,6 +1,7 @@
 export type MediaVariantRole =
   | "brand"
   | "hero-desktop"
+  | "hero-mobile-avif"
   | "hero-mobile"
   | "project";
 
@@ -102,6 +103,12 @@ export const mediaAssets: MediaAsset[] = [
         path: "/media/optimized/hero-roof-desktop.webp",
         width: 1440,
         height: 960,
+      },
+      {
+        role: "hero-mobile-avif",
+        path: "/media/optimized/hero-roof-mobile.avif",
+        width: 780,
+        height: 1040,
       },
       {
         role: "hero-mobile",

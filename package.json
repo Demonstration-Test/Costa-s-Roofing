@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "build:prefixed": "cross-env PUBLISH_BASE_PATH=/costas-roofing next build",
+    "build": "next build && node scripts/postprocess-static.mjs",
+    "build:prefixed": "cross-env PUBLISH_BASE_PATH=/costas-roofing next build && node scripts/postprocess-static.mjs",
     "lint": "eslint .",
     "media:process": "node scripts/process-media.mjs",
+    "postprocess:static": "node scripts/postprocess-static.mjs",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit",
@@ -42,5 +43,9 @@
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10"
+  },
+  "overrides": {
+    "postcss": "$postcss",
+    "sharp": "$sharp"
   }
 }
