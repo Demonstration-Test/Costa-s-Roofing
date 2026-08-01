@@ -1,0 +1,44 @@
+{
+  "date": "2026-08-01",
+  "url": "http://127.0.0.1:4174/",
+  "profile": "Lighthouse 12.8.2 mobile, slow 4G, 4x CPU slowdown",
+  "runs": [
+    {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 66,
+      "lcpMs": 2185,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 66,
+      "lcpMs": 2185,
+      "cls": 0,
+      "tbtMs": 0
+    },
+    {
+      "performance": 99,
+      "accessibility": 100,
+      "bestPractices": 100,
+      "seo": 66,
+      "lcpMs": 2184,
+      "cls": 0,
+      "tbtMs": 0
+    }
+  ],
+  "median": {
+    "performance": 99,
+    "accessibility": 100,
+    "bestPractices": 100,
+    "seo": 66,
+    "lcpMs": 2185,
+    "cls": 0,
+    "tbtMs": 0
+  },
+  "note": "The preview is intentionally noindex until PUBLIC_SITE_ORIGIN is configured, which is the only scored SEO failure."
+}
