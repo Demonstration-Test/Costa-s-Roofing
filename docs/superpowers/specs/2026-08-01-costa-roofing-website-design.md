@@ -6,7 +6,7 @@
 
 ## 1. Objective
 
-Build a cinematic, conversion-focused, static-capable website for Costa's Roofing. The experience should move visually from exposure and uncertainty toward a sealed, dry, stable result. It must prioritize calls, authentic proof, accessibility, and performance over spectacle.
+Build a cinematic, conversion-focused website for Costa's Roofing as a Next.js App Router static export. The experience should move visually from exposure and uncertainty toward a sealed, dry, stable result. It must prioritize calls, authentic proof, accessibility, and performance over spectacle.
 
 The first release is phone-only. It must not contain a lead form, simulated submission, appointment confirmation, email action, CRM integration, financing flow, ZIP checker, emergency-service promise, or other behavior that is not operationally configured.
 
@@ -26,6 +26,8 @@ The first release is phone-only. It must not contain a lead form, simulated subm
 | Facebook | `https://www.facebook.com/p/Costas-Roofing-61551744815173/` | Use as the approved social and authentic-media source. |
 
 Third-party legal-name, registration, license, insurance, bonding, warranty, certification, and address claims are not approved and must not be published.
+
+The rating and hours snapshot was supplied and approved in this project conversation on `2026-08-01`. That date is the centralized `lastReviewed` value; it is an internal freshness marker and is not displayed as the date on which Google published or verified the reviews.
 
 ## 3. Approved Service Scope
 
@@ -128,6 +130,32 @@ Implement the following routes:
 
 Every navigation item and call to action must have a working destination. The phone number must remain visible without opening the desktop navigation menu.
 
+### 7.1 Route content contracts
+
+- `/`: the complete homepage sequence in Section 6.
+- `/services`: intro, the four core roofing service summaries, the grouped exterior-service summary, contextual call action, and related-route links.
+- `/roof-repair`: leak/damage concerns, the verified repair scope, boundaries against remote diagnosis, relevant review excerpt, and call action.
+- `/roof-replacement`: replacement/installation scope, planning considerations without lifespan or material-performance promises, relevant review excerpt, and call action.
+- `/roof-inspection`: reasons a visitor may request an inspection, a statement that calling does not confirm an appointment, relevant review excerpt, and call action.
+- `/storm-damage`: wind and storm-damage repair scope, safety guidance to avoid climbing onto a roof, no emergency/insurance promise, relevant review excerpt, and call action.
+- `/exterior-services`: four subsections for gutters, siding, skylights, and ventilation, each limited to the approved scope, followed by a single call action.
+- `/projects`: one project story assembled from the approved Facebook media set, with neutral captions based only on visible content. No invented location, date, material, customer, scope value, or before/after claim.
+- `/reviews`: the approved rating snapshot, the six approved excerpts in Section 11, a note that individual experiences vary, and a call action.
+- `/about`: public brand, Harrison-area focus, and review-evidenced themes of communication, workmanship, cleanup, and responsiveness. No founding date, legal identity, owner biography, team size, credentials, or years-in-business claim.
+- `/contact`: phone number, 24-hour call availability, broad service-area wording, Facebook link, and contextual call prompts. No address, email, map, form, or appointment confirmation.
+- `/privacy`: the factual first-release notice specified in Section 12.1.
+
+Service detail routes reuse `ServiceDetail`, review records, and `PhoneCTA`; they do not define parallel copies of business data. Projects, reviews, about, contact, and privacy use the route-specific page units defined in Section 8.2.
+
+### 7.2 Rendering, export, and base-path contract
+
+- Use Next.js App Router with TypeScript and `output: "export"`.
+- Use folder-style static routes with `trailingSlash: true`, producing `route/index.html` so direct/deep routes work on static hosts that serve directory indexes.
+- Use a centralized `PUBLISH_BASE_PATH` build setting that accepts either an empty string or one leading-slash path segment such as `/costas-roofing`.
+- Apply the validated base path to internal navigation and local assets through one URL helper. Do not hard-code root-relative project paths inside components.
+- Verify both empty-base and prefixed-base builds. A host must publish the complete export directory and support directory-index resolution; hosts that cannot do so are outside the first-release hosting contract.
+- Core content is server-rendered into the static HTML. Client components own only navigation state and progressive animation.
+
 ## 8. Content and Component Boundaries
 
 Use centralized, typed data rather than scattering facts across visual components.
@@ -144,7 +172,7 @@ Use centralized, typed data rather than scattering facts across visual component
 ### 8.2 UI units
 
 - `SiteHeader` and `MobileNavigation`: navigation and visible phone access
-- `PhoneCTA`: the only conversion primitive; accepts contextual label and analytics-safe event name
+- `PhoneCTA`: the only conversion primitive; accepts a contextual label and always resolves to the centralized phone URI
 - `CinematicHero`: composes the static media fallback, WebGL environment, and hero content without owning business facts
 - `RooflineMotif`: owns the recurring SVG/GSAP line sequence
 - `IntentPathways`: routes visitor intent to the correct call wording or service content
@@ -153,6 +181,17 @@ Use centralized, typed data rather than scattering facts across visual component
 - `ReviewProof`: renders approved review excerpts without altering attribution
 - `ServiceAreaStatement`: renders the approved broad service-area wording
 - `SiteFooter`: repeats contact, navigation, hours, privacy, and Facebook link
+
+Additional route-level units:
+
+- `ServicesOverviewPage`: composes all verified service summaries and related links
+- `ServiceDetailPage`: shared route shell for roof repair, replacement, inspection, and storm damage
+- `ExteriorServicesPage`: owns the four approved exterior subsections
+- `ProjectsPage`: owns the one-project media narrative and captions
+- `ReviewsPage`: owns the rating snapshot and approved excerpts
+- `AboutPage`: owns the constrained company introduction and evidence-led themes
+- `ContactPage`: owns phone, hours, service area, and Facebook actions
+- `PrivacyPage`: renders the fixed factual notice contract in Section 12.1
 
 Visual components may receive content records but must not define or alter business facts.
 
@@ -172,10 +211,12 @@ The WebGL layer must:
 - Use abstract geometry only
 - Never imply it is a completed Costa's Roofing project
 - Cap device pixel ratio
-- Reduce particles, shadows, blur, and camera movement on mobile or constrained devices
+- Reduce particles, shadows, blur, and camera movement below `768px`
 - Pause when offscreen or when the document is hidden
 - Disable for reduced motion
 - Fall back to an optimized authentic roof image plus a static red roofline
+
+Fallback selection is deterministic. Render the authentic static fallback in the initial HTML. Do not mount the WebGL enhancement when `prefers-reduced-motion: reduce` matches or when a capability probe cannot obtain either a WebGL2 or WebGL context. If canvas initialization or rendering throws, a local error boundary removes the canvas and leaves the already-rendered fallback intact. Other devices receive the enhancement with the `<768px` quality reduction; do not infer a separate “constrained device” class from user agent or unsupported heuristics.
 
 The site must not trap scrolling or require motion to understand content.
 
@@ -186,7 +227,7 @@ The following media was observed on the approved public Facebook page and inspec
 | ID | Facebook filename | Type | Intended use | Documentary status | Approval and privacy rule |
 | --- | --- | --- | --- | --- | --- |
 | `FB-LOGO-01` | `429768876_122139234194058160_6149121170925206293_n.jpg` | Existing logo | Header, footer, favicon source | Authentic brand asset | Preserve artwork and wording; do not redraw or add credentials. |
-| `FB-PROJECT-01` | `683655083_17986260380987246_5390409633409325555_n.jpg` | Completed exterior photo | Homepage/project detail | Authentic company-page project media | Crop and color-correct only; avoid location or material claims. |
+| `FB-PROJECT-01` | `683655083_17986260380987246_5390409633409325555_n.jpg` | Completed exterior photo | Homepage and `/projects` | Authentic company-page project media | Crop and color-correct only; avoid location or material claims. |
 | `FB-PROJECT-02` | `662302317_17986260389987246_3564814741320234066_n.jpg` | Completed exterior wide photo | Project sequence | Authentic company-page project media | Crop and color-correct only; avoid location or material claims. |
 | `FB-PROJECT-03` | `671294453_17986260407987246_6648509351510577430_n.jpg` | In-progress exterior photo | Project process frame | Authentic company-page project media | Show as in-progress work; do not claim a before state. |
 | `FB-PROJECT-04` | `675462134_17986260416987246_5797338533586378673_n.jpg` | Completed roof-detail photo | Hero fallback and roof detail | Authentic company-page project media | Crop and color-correct only; do not label the shingle brand or system. |
@@ -194,9 +235,33 @@ The following media was observed on the approved public Facebook page and inspec
 
 All six assets are approved for this project. They show one project set and must remain grouped as one project story. Other Facebook images are excluded from the initial design unless separately inventoried and approved. No AI-generated documentary imagery is permitted. Decorative abstract roof geometry and weather effects are allowed when clearly non-documentary.
 
+### 10.1 Acquisition and local paths
+
+The first implementation step is to reacquire the six approved files from the approved Facebook page through the browser asset inventory used during design review. Store untouched acquisitions at:
+
+- `public/media/source/facebook/FB-LOGO-01.jpg`
+- `public/media/source/facebook/FB-PROJECT-01.jpg`
+- `public/media/source/facebook/FB-PROJECT-02.jpg`
+- `public/media/source/facebook/FB-PROJECT-03.jpg`
+- `public/media/source/facebook/FB-PROJECT-04.jpg`
+- `public/media/source/facebook/FB-PROJECT-05.jpg`
+
+Record the acquired byte size, pixel dimensions, and SHA-256 hash in `docs/media/costas-facebook-media-manifest.md`. Create served derivatives under `public/media/optimized/` and map them from `src/content/media.ts`. If an approved asset cannot be reacquired or does not visually match the inspected filename, exclude it rather than substituting another image.
+
 ## 11. Review Use
 
-The supplied review corpus is the only customer-quote source for the first release. Use a representative subset and preserve reviewer attribution. Excerpts may be shortened for layout without changing meaning. Relative timestamps such as “three months ago” must be omitted because they become stale.
+The supplied review corpus at `C:\Users\Anoth\.codex\attachments\5906ad06-0a8f-45d3-aa87-56e8d146b666\pasted-text.txt` is the only customer-quote source for the first release. Preserve that path as a provenance note in the implementation media/content audit; the production application must not depend on the attachment path at runtime. Excerpts may be shortened for layout without changing meaning. Relative timestamps such as “three months ago” must be omitted because they become stale.
+
+The approved initial excerpts are:
+
+| Reviewer | Approved excerpt |
+| --- | --- |
+| Carlos Rivas | “The crew was extremely efficient and professional from start to finish.” |
+| Jeanne Fasano | “Clear communication, very reasonably priced, extremely accommodating, and very close attention to detail.” |
+| Alex Neff | “Fast, organized, and high-quality work from the entire team.” |
+| John Gagliano | “After the job was complete they completely cleaned the entire property.” |
+| Jake Handler | “Very honest and would absolutely use them again.” |
+| Stephen O'Brien | “They left the property cleaner than they arrived.” |
 
 Do not convert individual review anecdotes into universal claims. In particular:
 
@@ -208,9 +273,21 @@ Do not convert individual review anecdotes into universal claims. In particular:
 
 ## 12. SEO and Metadata
 
-Provide unique, factual titles and descriptions for every route. Include Organization or appropriate home-service structured data using only the approved public name, phone, Facebook URL, hours, rating snapshot when supported by the selected schema, and broad area-served wording. Omit the street address and every unverified legal, license, insurance, warranty, and certification field.
+Provide unique, factual titles and descriptions for every route. Use one `Organization` JSON-LD record containing only `@context`, `@type: "Organization"`, `name`, `url` when a production origin is configured, `telephone`, `sameAs` with the approved Facebook URL, and `areaServed` with the literal value `Harrison and surrounding cities`. Do not include `address`, `openingHours`, `aggregateRating`, `review`, legal name, license, insurance, warranty, certification, or price fields. The visible rating and 24-hour call statement are content snapshots, not structured business-opening claims.
 
 The public website origin has not been supplied. Implement it as an optional, validated configuration value. Local builds must not emit a fake production canonical. Canonical links, absolute Open Graph URLs, and the production sitemap are generated only when a non-local public origin is configured. Robots behavior must prevent accidental indexing of an unconfigured preview.
+
+### 12.1 Privacy route copy contract
+
+The `/privacy` route is a factual website notice dated `2026-08-01`, not a claim of legal compliance. It must state:
+
+- This first-release website has no contact form, customer account, file upload, analytics provider, advertising pixel, chat, scheduling widget, or online payment.
+- The site does not intentionally collect or transmit personal information through its own interface.
+- Calling Costa's Roofing is handled through the visitor's telephone provider and the business's normal phone operations.
+- Following the Facebook link subjects the visitor to Facebook's own privacy practices.
+- Visitors may call `(973) 517-2952` with questions about this website notice.
+
+Do not add cookie, retention, deletion, security, regulatory, or data-controller promises that cannot be verified from the static implementation.
 
 ## 13. Accessibility and Progressive Enhancement
 
@@ -245,19 +322,20 @@ The public website origin has not been supplied. Implement it as an optional, va
 - Every approved route renders.
 - Every internal navigation target resolves.
 - Every phone CTA uses exactly `tel:+19735172952`.
-- Content guards reject bracketed placeholders and banned unsupported phrases.
+- Content guards scan rendered text, metadata, JSON-LD, and route content records case-insensitively. They reject bracketed placeholders and the following canonical unsupported phrases: `best`, `number one`, `#1`, `top-rated`, `lowest price`, `free estimate`, `free inspection`, `free roof`, `free replacement`, `same-day`, `24/7`, `emergency`, `emergency tarping`, `guaranteed response`, `lifetime roof`, `lifetime warranty`, `insurance will pay`, `no out-of-pocket`, `cover your deductible`, `licensed`, `insured`, `bonded`, `certified`, `financing available`, and `commercial roofing`. Whole-word matching is required for single words; punctuation and capitalization do not bypass a match. Source documentation and the unrendered original review corpus are outside the scan.
 - No email, form, fake confirmation, street address, emergency claim, legal name, license number, warranty, financing, or insurance claim appears in the rendered site.
 - Metadata uses the centralized facts and omits fake public origins.
 
 ### 15.2 Browser and responsive checks
 
-- Verify the settled page at small mobile, large mobile, tablet, desktop, and large desktop widths.
+- Verify the settled page at `360`, `390`, `768`, `1024`, `1440`, and `1920` CSS-pixel viewport widths.
 - Verify header, menu, call control, each route, and direct/deep-route loading.
 - Verify keyboard navigation, focus order, reduced motion, and 200% zoom.
 - Scroll far enough to settle lazy media before judging images or overflow.
 - Check console, hydration, network, missing-asset, and horizontal-overflow errors.
 - Verify WebGL pause/fallback behavior and that the phone CTA remains usable while animations run.
 - Verify the non-WebGL experience preserves the same hierarchy and conversion path.
+- Exercise the no-WebGL path by overriding `HTMLCanvasElement.prototype.getContext` to return `null` before the client bundle initializes, then confirm the fallback remains visible and the page produces no uncaught error.
 
 ### 15.3 Acceptance standard
 
