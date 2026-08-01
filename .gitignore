@@ -7,4 +7,5 @@ coverage/
 !.env.example
 tmp/
 docs/qa/tmp/
+__pycache__/
 .qa-*.log
