@@ -15,7 +15,7 @@ Validated 2026-08-01 against the approved design and content specification.
 
 ## Automated validation
 
-- [x] `npm test` — 100 tests pass.
+- [x] `npm test` — 101 tests pass.
 - [x] `npm run typecheck` — passes.
 - [x] `npm run lint` — passes without warnings.
 - [x] `git diff --check` — passes.
@@ -60,6 +60,8 @@ Hero media budgets:
 ## Release boundary
 
 - [x] Final root preview artifact is present in `out/`.
-- [x] No deployment or repository push was performed.
-- [ ] Configure the real `PUBLIC_SITE_ORIGIN` before a public build.
-- [ ] Run one final live-domain route/canonical check after hosting is selected.
+- [x] GitHub Pages publishes from `master` through the reviewed Actions workflow.
+- [x] The public build uses `https://demonstration-test.github.io` with the exact `/Costa-s-Roofing` repository base path.
+- [x] All 12 live routes, public canonicals, sitemap URLs, settled media, and responsive layouts were checked after deployment.
+
+Live site: <https://demonstration-test.github.io/Costa-s-Roofing/>
