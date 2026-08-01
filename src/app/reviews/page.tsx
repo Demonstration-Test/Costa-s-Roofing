@@ -18,6 +18,11 @@ export default function ReviewsPage() {
       <PageHero
         index="37 voices"
         intro="A supplied Google rating snapshot and six selected excerpts, kept in the customers’ own words."
+        media={{
+          assetId: "FB-PROJECT-01",
+          desktopPosition: "50% 56%",
+          mobilePosition: "56% 58%",
+        }}
         title="Customer reviews"
       />
       <section className="reviews-ledger">

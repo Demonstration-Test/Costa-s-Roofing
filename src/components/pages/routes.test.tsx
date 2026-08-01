@@ -34,11 +34,60 @@ const routePages: Array<[string, ComponentType, string]> = [
   ["privacy", PrivacyPage, "Website privacy notice"],
 ];
 
+const imageHeroPages: Array<[
+  string,
+  ComponentType,
+  string,
+]> = [
+  ["services", ServicesPage, "/media/optimized/services-hero-desktop.webp"],
+  ["projects", ProjectsPage, "/media/optimized/projects-hero-desktop.webp"],
+  ["reviews", ReviewsPage, "/media/optimized/reviews-hero-desktop.webp"],
+  ["about", AboutPage, "/media/optimized/about-hero-desktop.webp"],
+  ["contact", ContactPage, "/media/optimized/contact-hero-desktop.webp"],
+];
+
 describe("secondary route contracts", () => {
   it.each(routePages)("renders the %s route with a unique heading", (_, Page, heading) => {
     render(<Page />);
     expect(screen.getByRole("heading", { level: 1, name: heading })).toBeInTheDocument();
   });
+
+  it.each(imageHeroPages)(
+    "renders one distinct authenticated image hero on the %s route",
+    (_, Page, desktopPath) => {
+      const { container } = render(<Page />);
+      const picture = container.querySelector(".page-hero__media picture");
+      const image = picture?.querySelector("img");
+
+      expect(picture).toBeInTheDocument();
+      expect(image).toHaveAttribute("src", desktopPath);
+      expect(image).toHaveAttribute("alt", "");
+      expect(image).toHaveAttribute("loading", "eager");
+      expect(image).toHaveAttribute("fetchpriority", "high");
+      expect(
+        picture?.querySelector(
+          'source[type="image/avif"][media="(max-width: 767px)"]',
+        ),
+      ).toHaveAttribute("srcset", desktopPath.replace("desktop.webp", "mobile.avif"));
+      expect(
+        picture?.querySelector(
+          'source[type="image/webp"][media="(max-width: 767px)"]',
+        ),
+      ).toHaveAttribute("srcset", desktopPath.replace("desktop.webp", "mobile.webp"));
+    },
+  );
+
+  it.each([
+    ["roof repair", RoofRepairPage],
+    ["exterior services", ExteriorServicesPage],
+    ["privacy", PrivacyPage],
+  ] as Array<[string, ComponentType]>)(
+    "keeps the %s hero on the abstract treatment",
+    (_, Page) => {
+      const { container } = render(<Page />);
+      expect(container.querySelector(".page-hero__media")).not.toBeInTheDocument();
+    },
+  );
 
   it("keeps every service-detail route contextual and phone-only", () => {
     for (const Page of [

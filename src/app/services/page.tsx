@@ -37,6 +37,11 @@ export default function ServicesPage() {
       <PageHero
         index="01—08"
         intro="A focused set of roofing and exterior services, built from work repeatedly described in customer reviews."
+        media={{
+          assetId: "FB-PROJECT-04",
+          desktopPosition: "50% 50%",
+          mobilePosition: "58% 52%",
+        }}
         title="Roofing and exterior services"
       />
       <section className="route-service-list">

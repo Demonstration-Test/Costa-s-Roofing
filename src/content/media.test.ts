@@ -1,9 +1,40 @@
 import fs from "node:fs";
 import path from "node:path";
 
+import sharp from "sharp";
+
 import { mediaAssets } from "./media";
 
 const root = process.cwd();
+
+const pageHeroAssignments = [
+  ["FB-PROJECT-04", "services-hero"],
+  ["FB-PROJECT-02", "projects-hero"],
+  ["FB-PROJECT-01", "reviews-hero"],
+  ["FB-PROJECT-03", "about-hero"],
+  ["FB-PROJECT-05", "contact-hero"],
+] as const;
+
+const pageHeroDerivatives = pageHeroAssignments.flatMap(([, stem]) => [
+  {
+    file: `${stem}-desktop.webp`,
+    width: 1440,
+    height: 900,
+    maxBytes: 350 * 1024,
+  },
+  {
+    file: `${stem}-mobile.avif`,
+    width: 780,
+    height: 1040,
+    maxBytes: 220 * 1024,
+  },
+  {
+    file: `${stem}-mobile.webp`,
+    width: 780,
+    height: 1040,
+    maxBytes: 220 * 1024,
+  },
+]);
 
 describe("approved media registry", () => {
   it("contains the mandatory logo and five project images", () => {
@@ -57,4 +88,45 @@ describe("approved media registry", () => {
     expect(desktopSize).toBeLessThanOrEqual(350 * 1024);
     expect(mobileSize).toBeLessThanOrEqual(220 * 1024);
   });
+
+  it("assigns three responsive page-hero variants to each approved route image", () => {
+    for (const [assetId, stem] of pageHeroAssignments) {
+      const asset = mediaAssets.find((entry) => entry.id === assetId);
+      const variants = asset?.variants.filter((variant) =>
+        variant.role.startsWith("page-hero-"),
+      );
+
+      expect(variants).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({
+            role: "page-hero-desktop",
+            path: `/media/optimized/${stem}-desktop.webp`,
+          }),
+          expect.objectContaining({
+            role: "page-hero-mobile-avif",
+            path: `/media/optimized/${stem}-mobile.avif`,
+          }),
+          expect.objectContaining({
+            role: "page-hero-mobile",
+            path: `/media/optimized/${stem}-mobile.webp`,
+          }),
+        ]),
+      );
+    }
+  });
+
+  it.each(pageHeroDerivatives)(
+    "keeps $file at its exact dimensions and transfer budget",
+    async ({ file, width, height, maxBytes }) => {
+      const filePath = path.join(root, "public", "media", "optimized", file);
+
+      expect(fs.existsSync(filePath)).toBe(true);
+      const metadata = await sharp(filePath).metadata();
+      const bytes = fs.statSync(filePath).size;
+
+      expect(metadata.width).toBe(width);
+      expect(metadata.height).toBe(height);
+      expect(bytes).toBeLessThanOrEqual(maxBytes);
+    },
+  );
 });

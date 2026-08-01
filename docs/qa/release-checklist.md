@@ -15,7 +15,7 @@ Validated 2026-08-01 against the approved design and content specification.
 
 ## Automated validation
 
-- [x] `npm test` — 101 tests pass.
+- [x] `npm test` — 128 tests pass.
 - [x] `npm run typecheck` — passes.
 - [x] `npm run lint` — passes without warnings.
 - [x] `git diff --check` — passes.
@@ -56,6 +56,26 @@ Hero media budgets:
 - Mobile AVIF: 128 KB; WebP fallback: 185.4 KB (budget ≤ 220 KB).
 - Desktop WebP: 323.9 KB (budget ≤ 350 KB).
 - Below-the-fold project images remain lazy-loaded.
+
+## Secondary-page image hero validation
+
+- [x] Services, Projects, Reviews, About, and Contact use five distinct approved documentary photographs as full-bleed hero backgrounds.
+- [x] Each route has a 1440 by 900 desktop WebP plus 780 by 1040 mobile AVIF and WebP derivatives within the approved byte budgets.
+- [x] All five routes pass settled checks at 360, 390, 768, 1024, 1440, and 1920 CSS pixels with correct responsive sources, HTTP 200 responses, no broken images, no browser errors, no heading clipping, and zero horizontal overflow.
+- [x] Lighthouse color-contrast audits pass on all 15 throttled mobile runs.
+- [x] Detailed evidence is recorded in `docs/qa/secondary-heroes/browser-summary.json` and `docs/qa/secondary-heroes/lighthouse-summary.json`.
+
+Median of three final Lighthouse mobile runs per changed route:
+
+| Route | Performance | Accessibility | Best practices | LCP | CLS | TBT |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Services | 98 | 100 | 100 | 2.385 s | 0 | 0 ms |
+| Projects | 97 | 100 | 100 | 2.460 s | 0 | 0 ms |
+| Reviews | 99 | 100 | 100 | 2.160 s | 0 | 0 ms |
+| About | 98 | 100 | 100 | 2.460 s | 0 | 0 ms |
+| Contact | 98 | 100 | 100 | 2.460 s | 0 | 0 ms |
+
+The user approved both the desktop and mobile contact sheets on 2026-08-01 and authorized publication.
 
 ## Release boundary
 

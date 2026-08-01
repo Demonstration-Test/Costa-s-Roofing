@@ -35,6 +35,11 @@ export default function AboutPage() {
       <PageHero
         index="Costa’s Roofing"
         intro="A Harrison-area roofing company presented through the qualities customers repeatedly mention—not through invented milestones."
+        media={{
+          assetId: "FB-PROJECT-03",
+          desktopPosition: "50% 48%",
+          mobilePosition: "52% 50%",
+        }}
         title="Built around the work"
       />
       <section className="about-themes">

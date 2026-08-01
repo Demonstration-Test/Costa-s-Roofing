@@ -31,6 +31,11 @@ export default function ProjectsPage() {
       <PageHero
         index="01 project"
         intro="Five authentic photographs from one approved exterior project sequence. The images are presented without inferred dates, materials, or geography."
+        media={{
+          assetId: "FB-PROJECT-02",
+          desktopPosition: "50% 52%",
+          mobilePosition: "55% 55%",
+        }}
         title="One project, documented"
       />
       <section aria-label="Documentary project photographs" className="project-gallery">

@@ -29,4 +29,26 @@ No location, date, customer, material, manufacturer, price, warranty, certificat
 | `project-04.webp` | 960×1280 | 371,320 | Project sequence |
 | `project-05.webp` | 960×1280 | 355,290 | Project sequence |
 
-Derivatives use WebP. Hero files satisfy the approved 350KB desktop and 220KB mobile transfer budgets. Originals remain outside the public export under `assets/source/facebook/`.
+Static derivatives use WebP; responsive mobile hero sources also include AVIF. Hero files satisfy the approved 350KB desktop and 220KB mobile transfer budgets. Originals remain outside the public export under `assets/source/facebook/`.
+
+## Secondary-page hero decorative-use amendment
+
+Approved on 2026-08-01, the five project records may also appear as atmospheric full-bleed backgrounds on the primary secondary pages. They remain one documentary project set, the grouped `/projects` narrative remains unchanged, and no route hero may imply a separate project, location, date, material, customer, project value, sequence, or before-and-after relationship.
+
+| File | Dimensions | Bytes | Source ID | Decorative route role |
+| --- | --- | ---: | --- | --- |
+| `services-hero-desktop.webp` | 1440×900 | 269,216 | `FB-PROJECT-04` | `/services` desktop hero |
+| `services-hero-mobile.avif` | 780×1040 | 114,305 | `FB-PROJECT-04` | `/services` mobile AVIF hero |
+| `services-hero-mobile.webp` | 780×1040 | 175,902 | `FB-PROJECT-04` | `/services` mobile WebP hero |
+| `projects-hero-desktop.webp` | 1440×900 | 258,216 | `FB-PROJECT-02` | `/projects` desktop hero |
+| `projects-hero-mobile.avif` | 780×1040 | 120,524 | `FB-PROJECT-02` | `/projects` mobile AVIF hero |
+| `projects-hero-mobile.webp` | 780×1040 | 180,162 | `FB-PROJECT-02` | `/projects` mobile WebP hero |
+| `reviews-hero-desktop.webp` | 1440×900 | 85,102 | `FB-PROJECT-01` | `/reviews` desktop hero |
+| `reviews-hero-mobile.avif` | 780×1040 | 67,238 | `FB-PROJECT-01` | `/reviews` mobile AVIF hero |
+| `reviews-hero-mobile.webp` | 780×1040 | 100,752 | `FB-PROJECT-01` | `/reviews` mobile WebP hero |
+| `about-hero-desktop.webp` | 1440×900 | 201,008 | `FB-PROJECT-03` | `/about` desktop hero |
+| `about-hero-mobile.avif` | 780×1040 | 120,719 | `FB-PROJECT-03` | `/about` mobile AVIF hero |
+| `about-hero-mobile.webp` | 780×1040 | 182,920 | `FB-PROJECT-03` | `/about` mobile WebP hero |
+| `contact-hero-desktop.webp` | 1440×900 | 221,144 | `FB-PROJECT-05` | `/contact` desktop hero |
+| `contact-hero-mobile.avif` | 780×1040 | 120,937 | `FB-PROJECT-05` | `/contact` mobile AVIF hero |
+| `contact-hero-mobile.webp` | 780×1040 | 183,926 | `FB-PROJECT-05` | `/contact` mobile WebP hero |

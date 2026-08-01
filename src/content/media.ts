@@ -3,6 +3,9 @@ export type MediaVariantRole =
   | "hero-desktop"
   | "hero-mobile-avif"
   | "hero-mobile"
+  | "page-hero-desktop"
+  | "page-hero-mobile-avif"
+  | "page-hero-mobile"
   | "project";
 
 export type MediaVariant = {
@@ -48,13 +51,32 @@ export const mediaAssets: MediaAsset[] = [
     sourceUrl: facebookPage,
     alt: "Completed white home exterior with black trim and two garage doors.",
     documentary: true,
-    intendedUse: "Completed exterior frame in the project sequence",
+    intendedUse:
+      "Completed exterior frame in the project sequence and decorative reviews hero",
     variants: [
       {
         role: "project",
         path: "/media/optimized/project-01.webp",
         width: 960,
         height: 1280,
+      },
+      {
+        role: "page-hero-desktop",
+        path: "/media/optimized/reviews-hero-desktop.webp",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: "page-hero-mobile-avif",
+        path: "/media/optimized/reviews-hero-mobile.avif",
+        width: 780,
+        height: 1040,
+      },
+      {
+        role: "page-hero-mobile",
+        path: "/media/optimized/reviews-hero-mobile.webp",
+        width: 780,
+        height: 1040,
       },
     ],
   },
@@ -64,13 +86,32 @@ export const mediaAssets: MediaAsset[] = [
     sourceUrl: facebookPage,
     alt: "Wide view of a completed white home exterior with black roofing and trim.",
     documentary: true,
-    intendedUse: "Wide completed exterior frame in the project sequence",
+    intendedUse:
+      "Wide completed exterior frame in the project sequence and decorative projects hero",
     variants: [
       {
         role: "project",
         path: "/media/optimized/project-02.webp",
         width: 960,
         height: 1280,
+      },
+      {
+        role: "page-hero-desktop",
+        path: "/media/optimized/projects-hero-desktop.webp",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: "page-hero-mobile-avif",
+        path: "/media/optimized/projects-hero-mobile.avif",
+        width: 780,
+        height: 1040,
+      },
+      {
+        role: "page-hero-mobile",
+        path: "/media/optimized/projects-hero-mobile.webp",
+        width: 780,
+        height: 1040,
       },
     ],
   },
@@ -80,13 +121,32 @@ export const mediaAssets: MediaAsset[] = [
     sourceUrl: facebookPage,
     alt: "Rear exterior wall during siding installation with house wrap and scaffolding.",
     documentary: true,
-    intendedUse: "Work-in-progress frame in the project sequence",
+    intendedUse:
+      "Work-in-progress frame in the project sequence and decorative about hero",
     variants: [
       {
         role: "project",
         path: "/media/optimized/project-03.webp",
         width: 960,
         height: 1280,
+      },
+      {
+        role: "page-hero-desktop",
+        path: "/media/optimized/about-hero-desktop.webp",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: "page-hero-mobile-avif",
+        path: "/media/optimized/about-hero-mobile.avif",
+        width: 780,
+        height: 1040,
+      },
+      {
+        role: "page-hero-mobile",
+        path: "/media/optimized/about-hero-mobile.webp",
+        width: 780,
+        height: 1040,
       },
     ],
   },
@@ -96,7 +156,8 @@ export const mediaAssets: MediaAsset[] = [
     sourceUrl: facebookPage,
     alt: "Close view along a finished gray shingle roof ridge.",
     documentary: true,
-    intendedUse: "Hero fallback, roof detail, and project sequence",
+    intendedUse:
+      "Homepage hero fallback, roof detail, project sequence, and decorative services hero",
     variants: [
       {
         role: "hero-desktop",
@@ -122,6 +183,24 @@ export const mediaAssets: MediaAsset[] = [
         width: 960,
         height: 1280,
       },
+      {
+        role: "page-hero-desktop",
+        path: "/media/optimized/services-hero-desktop.webp",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: "page-hero-mobile-avif",
+        path: "/media/optimized/services-hero-mobile.avif",
+        width: 780,
+        height: 1040,
+      },
+      {
+        role: "page-hero-mobile",
+        path: "/media/optimized/services-hero-mobile.webp",
+        width: 780,
+        height: 1040,
+      },
     ],
   },
   {
@@ -130,13 +209,32 @@ export const mediaAssets: MediaAsset[] = [
     sourceUrl: facebookPage,
     alt: "Exterior siding installation in progress with scaffolding and wrapped walls.",
     documentary: true,
-    intendedUse: "Alternate work-in-progress frame in the project sequence",
+    intendedUse:
+      "Alternate work-in-progress frame in the project sequence and decorative contact hero",
     variants: [
       {
         role: "project",
         path: "/media/optimized/project-05.webp",
         width: 960,
         height: 1280,
+      },
+      {
+        role: "page-hero-desktop",
+        path: "/media/optimized/contact-hero-desktop.webp",
+        width: 1440,
+        height: 900,
+      },
+      {
+        role: "page-hero-mobile-avif",
+        path: "/media/optimized/contact-hero-mobile.avif",
+        width: 780,
+        height: 1040,
+      },
+      {
+        role: "page-hero-mobile",
+        path: "/media/optimized/contact-hero-mobile.webp",
+        width: 780,
+        height: 1040,
       },
     ],
   },

@@ -50,18 +50,131 @@ const jobs = [
     fit: "cover",
     quality: 68,
   },
+  ...[
+    {
+      source: "FB-PROJECT-04.jpg",
+      stem: "services-hero",
+      desktopFocal: { x: 0.5, y: 0.5 },
+      mobileFocal: { x: 0.58, y: 0.52 },
+    },
+    {
+      source: "FB-PROJECT-02.jpg",
+      stem: "projects-hero",
+      desktopFocal: { x: 0.5, y: 0.52 },
+      mobileFocal: { x: 0.55, y: 0.55 },
+      mobileAvifQuality: 34,
+    },
+    {
+      source: "FB-PROJECT-01.jpg",
+      stem: "reviews-hero",
+      desktopFocal: { x: 0.5, y: 0.56 },
+      mobileFocal: { x: 0.56, y: 0.58 },
+    },
+    {
+      source: "FB-PROJECT-03.jpg",
+      stem: "about-hero",
+      desktopFocal: { x: 0.5, y: 0.48 },
+      mobileFocal: { x: 0.52, y: 0.5 },
+    },
+    {
+      source: "FB-PROJECT-05.jpg",
+      stem: "contact-hero",
+      desktopFocal: { x: 0.5, y: 0.5 },
+      mobileFocal: { x: 0.55, y: 0.52 },
+    },
+  ].flatMap(
+    ({
+      source,
+      stem,
+      desktopFocal,
+      mobileFocal,
+      mobileAvifQuality = 50,
+    }) => [
+    {
+      source,
+      output: `${stem}-desktop.webp`,
+      width: 1440,
+      height: 900,
+      fit: "cover",
+      focal: desktopFocal,
+      quality: 68,
+    },
+    {
+      source,
+      output: `${stem}-mobile.avif`,
+      width: 780,
+      height: 1040,
+      fit: "cover",
+      focal: mobileFocal,
+      format: "avif",
+      quality: mobileAvifQuality,
+    },
+    {
+      source,
+      output: `${stem}-mobile.webp`,
+      width: 780,
+      height: 1040,
+      fit: "cover",
+      focal: mobileFocal,
+      quality: 62,
+    },
+    ],
+  ),
 ];
 
+function focalExtract(width, height, targetWidth, targetHeight, focal) {
+  const targetRatio = targetWidth / targetHeight;
+  const sourceRatio = width / height;
+  const cropWidth =
+    sourceRatio > targetRatio ? Math.round(height * targetRatio) : width;
+  const cropHeight =
+    sourceRatio > targetRatio ? height : Math.round(width / targetRatio);
+  const left = Math.max(
+    0,
+    Math.min(width - cropWidth, Math.round(focal.x * width - cropWidth / 2)),
+  );
+  const top = Math.max(
+    0,
+    Math.min(height - cropHeight, Math.round(focal.y * height - cropHeight / 2)),
+  );
+
+  return { left, top, width: cropWidth, height: cropHeight };
+}
+
 for (const job of jobs) {
-  const image = sharp(path.join(sourceDirectory, job.source))
-    .rotate()
-    .resize({
+  const sourcePath = path.join(sourceDirectory, job.source);
+  let image = sharp(sourcePath).rotate();
+
+  if (job.focal) {
+    const metadata = await sharp(sourcePath).metadata();
+    const swapsAxes = [5, 6, 7, 8].includes(metadata.orientation ?? 0);
+    const orientedWidth = swapsAxes ? metadata.height : metadata.width;
+    const orientedHeight = swapsAxes ? metadata.width : metadata.height;
+
+    if (!orientedWidth || !orientedHeight) {
+      throw new Error(`Could not read dimensions for ${job.source}`);
+    }
+
+    image = image
+      .extract(
+        focalExtract(
+          orientedWidth,
+          orientedHeight,
+          job.width,
+          job.height,
+          job.focal,
+        ),
+      )
+      .resize({ width: job.width, height: job.height, fit: "fill" });
+  } else {
+    image = image.resize({
       width: job.width,
       height: job.height,
       fit: job.fit,
       position: "centre",
       withoutEnlargement: false,
     });
+  }
 
   if (job.format === "avif") {
     await image

@@ -1,0 +1,275 @@
+{
+  "issues": [],
+  "results": [
+    {
+      "route": "/services/",
+      "width": 360,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-mobile.avif",
+      "objectPosition": "58% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/services/",
+      "width": 390,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-mobile.avif",
+      "objectPosition": "58% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/services/",
+      "width": 768,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/services/",
+      "width": 1024,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/services/",
+      "width": 1440,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/services/",
+      "width": 1920,
+      "status": 200,
+      "h1": "Roofing and exterior services",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/services-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 360,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-mobile.avif",
+      "objectPosition": "55% 55%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 390,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-mobile.avif",
+      "objectPosition": "55% 55%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 768,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-desktop.webp",
+      "objectPosition": "50% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 1024,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-desktop.webp",
+      "objectPosition": "50% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 1440,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-desktop.webp",
+      "objectPosition": "50% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/projects/",
+      "width": 1920,
+      "status": 200,
+      "h1": "One project, documented",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/projects-hero-desktop.webp",
+      "objectPosition": "50% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 360,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-mobile.avif",
+      "objectPosition": "56% 58%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 390,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-mobile.avif",
+      "objectPosition": "56% 58%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 768,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-desktop.webp",
+      "objectPosition": "50% 56%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 1024,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-desktop.webp",
+      "objectPosition": "50% 56%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 1440,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-desktop.webp",
+      "objectPosition": "50% 56%",
+      "overflow": 0
+    },
+    {
+      "route": "/reviews/",
+      "width": 1920,
+      "status": 200,
+      "h1": "Customer reviews",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/reviews-hero-desktop.webp",
+      "objectPosition": "50% 56%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 360,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-mobile.avif",
+      "objectPosition": "52% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 390,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-mobile.avif",
+      "objectPosition": "52% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 768,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-desktop.webp",
+      "objectPosition": "50% 48%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 1024,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-desktop.webp",
+      "objectPosition": "50% 48%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 1440,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-desktop.webp",
+      "objectPosition": "50% 48%",
+      "overflow": 0
+    },
+    {
+      "route": "/about/",
+      "width": 1920,
+      "status": 200,
+      "h1": "Built around the work",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/about-hero-desktop.webp",
+      "objectPosition": "50% 48%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 360,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-mobile.avif",
+      "objectPosition": "55% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 390,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-mobile.avif",
+      "objectPosition": "55% 52%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 768,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 1024,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 1440,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    },
+    {
+      "route": "/contact/",
+      "width": 1920,
+      "status": 200,
+      "h1": "Start with a call",
+      "currentSrc": "http://127.0.0.1:4176/Costa-s-Roofing/media/optimized/contact-hero-desktop.webp",
+      "objectPosition": "50% 50%",
+      "overflow": 0
+    }
+  ]
+}

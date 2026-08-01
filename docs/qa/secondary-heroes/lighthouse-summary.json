@@ -1,0 +1,58 @@
+{
+  "date": "2026-08-01",
+  "baseUrl": "http://127.0.0.1:4176/Costa-s-Roofing",
+  "profile": "Lighthouse 12.8.2 mobile, slow 4G, 4x CPU slowdown",
+  "gates": {
+    "lcpMsMax": 2500,
+    "clsMax": 0.1,
+    "tbtMsMax": 200
+  },
+  "issues": [],
+  "routes": [
+    {
+      "route": "/services/",
+      "runs": [
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2385, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2385, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2385, "cls": 0, "tbtMs": 0, "contrast": 1 }
+      ],
+      "median": { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2385, "cls": 0, "tbtMs": 0, "contrast": 1 }
+    },
+    {
+      "route": "/projects/",
+      "runs": [
+        { "performance": 97, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 39, "contrast": 1 },
+        { "performance": 97, "accessibility": 100, "bestPractices": 100, "lcpMs": 2535, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+      ],
+      "median": { "performance": 97, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+    },
+    {
+      "route": "/reviews/",
+      "runs": [
+        { "performance": 99, "accessibility": 100, "bestPractices": 100, "lcpMs": 2160, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 99, "accessibility": 100, "bestPractices": 100, "lcpMs": 2160, "cls": 0, "tbtMs": 31, "contrast": 1 },
+        { "performance": 99, "accessibility": 100, "bestPractices": 100, "lcpMs": 2160, "cls": 0, "tbtMs": 0, "contrast": 1 }
+      ],
+      "median": { "performance": 99, "accessibility": 100, "bestPractices": 100, "lcpMs": 2160, "cls": 0, "tbtMs": 0, "contrast": 1 }
+    },
+    {
+      "route": "/about/",
+      "runs": [
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 97, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 36, "contrast": 1 },
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+      ],
+      "median": { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+    },
+    {
+      "route": "/contact/",
+      "runs": [
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 },
+        { "performance": 97, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 28, "contrast": 1 },
+        { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+      ],
+      "median": { "performance": 98, "accessibility": 100, "bestPractices": 100, "lcpMs": 2460, "cls": 0, "tbtMs": 0, "contrast": 1 }
+    }
+  ]
+}

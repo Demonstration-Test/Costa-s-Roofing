@@ -17,6 +17,11 @@ export default function ContactPage() {
       <PageHero
         index="Phone only"
         intro="Describe the roof or exterior concern, ask a question, and discuss the next available step directly."
+        media={{
+          assetId: "FB-PROJECT-05",
+          desktopPosition: "50% 50%",
+          mobilePosition: "55% 52%",
+        }}
         title="Start with a call"
       />
       <section className="contact-ledger">
