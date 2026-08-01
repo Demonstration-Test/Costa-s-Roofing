@@ -23,10 +23,13 @@ describe("GitHub Pages deployment", () => {
     expect(workflow).toContain("id-token: write");
     expect(workflow).toContain("path: ./out");
     expect(workflow).toContain("actions/deploy-pages@v4");
+    expect(workflow).toContain("npm install --global npm@11.6.2");
 
     const packageJson = JSON.parse(readFileSync(packagePath, "utf8")) as {
+      packageManager: string;
       scripts: Record<string, string>;
     };
+    expect(packageJson.packageManager).toBe("npm@11.6.2");
     expect(packageJson.scripts["build:prefixed"]).toContain(
       "PUBLISH_BASE_PATH=/Costa-s-Roofing",
     );
