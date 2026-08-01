@@ -156,6 +156,8 @@ Service detail routes reuse `ServiceDetail`, review records, and `PhoneCTA`; the
 - Verify both empty-base and prefixed-base builds. A host must publish the complete export directory and support directory-index resolution; hosts that cannot do so are outside the first-release hosting contract.
 - Core content is server-rendered into the static HTML. Client components own only navigation state and progressive animation.
 
+`PUBLIC_SITE_ORIGIN` and `PUBLISH_BASE_PATH` are separate settings. `PUBLIC_SITE_ORIGIN` is either absent or an HTTPS origin consisting only of scheme and host, with no path, query, fragment, credentials, or trailing slash. `PUBLISH_BASE_PATH` is either empty or matches `^/[A-Za-z0-9._-]+$`. One shared URL builder joins the origin, base path, folder-style route, and trailing slash exactly once.
+
 ## 8. Content and Component Boundaries
 
 Use centralized, typed data rather than scattering facts across visual components.
@@ -171,7 +173,7 @@ Use centralized, typed data rather than scattering facts across visual component
 
 ### 8.2 UI units
 
-- `SiteHeader` and `MobileNavigation`: navigation and visible phone access
+- `SiteHeader` and `MobileNavigation`: navigation and visible phone access; the mobile baseline uses native HTML `<details>` and `<summary>` so links remain operable without JavaScript, with Framer Motion added only as enhancement
 - `PhoneCTA`: the only conversion primitive; accepts a contextual label and always resolves to the centralized phone URI
 - `CinematicHero`: composes the static media fallback, WebGL environment, and hero content without owning business facts
 - `RooflineMotif`: owns the recurring SVG/GSAP line sequence
@@ -237,16 +239,18 @@ All six assets are approved for this project. They show one project set and must
 
 ### 10.1 Acquisition and local paths
 
-The first implementation step is to reacquire the six approved files from the approved Facebook page through the browser asset inventory used during design review. Store untouched acquisitions at:
+The first implementation step is to reacquire the six approved files from the approved Facebook page through the browser asset inventory used during design review. Store untouched acquisitions outside the served export at:
 
-- `public/media/source/facebook/FB-LOGO-01.jpg`
-- `public/media/source/facebook/FB-PROJECT-01.jpg`
-- `public/media/source/facebook/FB-PROJECT-02.jpg`
-- `public/media/source/facebook/FB-PROJECT-03.jpg`
-- `public/media/source/facebook/FB-PROJECT-04.jpg`
-- `public/media/source/facebook/FB-PROJECT-05.jpg`
+- `assets/source/facebook/FB-LOGO-01.jpg`
+- `assets/source/facebook/FB-PROJECT-01.jpg`
+- `assets/source/facebook/FB-PROJECT-02.jpg`
+- `assets/source/facebook/FB-PROJECT-03.jpg`
+- `assets/source/facebook/FB-PROJECT-04.jpg`
+- `assets/source/facebook/FB-PROJECT-05.jpg`
 
 Record the acquired byte size, pixel dimensions, and SHA-256 hash in `docs/media/costas-facebook-media-manifest.md`. Create served derivatives under `public/media/optimized/` and map them from `src/content/media.ts`. If an approved asset cannot be reacquired or does not visually match the inspected filename, exclude it rather than substituting another image.
+
+`FB-LOGO-01` and `FB-PROJECT-04` are mandatory. The project sequence also requires at least three matching project images, including one completed view (`FB-PROJECT-01`, `FB-PROJECT-02`, or `FB-PROJECT-04`) and one in-progress view (`FB-PROJECT-03` or `FB-PROJECT-05`). Failure to meet that minimum blocks interface implementation and must be returned to the user as a media-source issue. If the minimum is met but one or two optional project frames fail, exclude those frames and render the project sequence with the remaining approved images. A media-free or substituted-stock version is not an acceptable first-release state.
 
 ## 11. Review Use
 
@@ -275,7 +279,7 @@ Do not convert individual review anecdotes into universal claims. In particular:
 
 Provide unique, factual titles and descriptions for every route. Use one `Organization` JSON-LD record containing only `@context`, `@type: "Organization"`, `name`, `url` when a production origin is configured, `telephone`, `sameAs` with the approved Facebook URL, and `areaServed` with the literal value `Harrison and surrounding cities`. Do not include `address`, `openingHours`, `aggregateRating`, `review`, legal name, license, insurance, warranty, certification, or price fields. The visible rating and 24-hour call statement are content snapshots, not structured business-opening claims.
 
-The public website origin has not been supplied. Implement it as an optional, validated configuration value. Local builds must not emit a fake production canonical. Canonical links, absolute Open Graph URLs, and the production sitemap are generated only when a non-local public origin is configured. Robots behavior must prevent accidental indexing of an unconfigured preview.
+The public website origin has not been supplied. Use the `PUBLIC_SITE_ORIGIN` validation contract in Section 7.2. When it is configured, every canonical, `og:url`, sitemap URL, and JSON-LD `url` is built as `PUBLIC_SITE_ORIGIN + PUBLISH_BASE_PATH + route + trailing slash`; the organization URL uses the same builder with `/`. When it is absent, omit canonical tags, `og:url`, and the JSON-LD `url`; generate an empty sitemap URL set; and emit `robots.txt` with `User-agent: *` and `Disallow: /`. Never use localhost, a Facebook URL, or an invented domain as the production origin.
 
 ### 12.1 Privacy route copy contract
 
@@ -313,6 +317,8 @@ Do not add cookie, retention, deletion, security, regulatory, or data-controller
 - If an image fails, use a neutral roofline treatment and preserve the text content.
 - If WebGL fails, preserve the authentic fallback image, headline, proof line, and phone CTA.
 - If enhanced scrolling fails, native scrolling remains intact.
+
+For the production build on Lighthouse mobile simulation using slow 4G and 4× CPU slowdown, target Largest Contentful Paint at or below `2.5s`, Cumulative Layout Shift at or below `0.1`, and Total Blocking Time at or below `200ms`. The initial page must not wait for the WebGL chunk to render the hero content or phone CTA. Mobile hero derivatives must remain at or below `220KB`, desktop hero derivatives at or below `350KB`, and no below-the-fold project image may preload.
 
 ## 15. Testing and Acceptance Criteria
 
