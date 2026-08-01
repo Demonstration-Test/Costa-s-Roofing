@@ -21,7 +21,7 @@ Validated 2026-08-01 against the approved design and content specification.
 - [x] `git diff --check` — passes.
 - [x] `npm audit --json` — 0 vulnerabilities after compatible PostCSS and Sharp overrides.
 - [x] `npm run build && npm run verify:export` — 12 root routes verified.
-- [x] `npm run build:prefixed` plus prefixed verifier — 12 routes verified at `/costas-roofing`.
+- [x] `npm run build:prefixed` plus prefixed verifier — 12 routes verified at `/Costa-s-Roofing`.
 - [x] Static post-processing removes unused Next hydration scripts while preserving JSON-LD and `site-motion.js`.
 
 ## Browser and responsive validation
