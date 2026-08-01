@@ -1,0 +1,46 @@
+{
+  "name": "costas-roofing-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:prefixed": "cross-env PUBLISH_BASE_PATH=/costas-roofing next build",
+    "lint": "eslint .",
+    "media:process": "node scripts/process-media.mjs",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit",
+    "verify:export": "node scripts/verify-export.mjs"
+  },
+  "dependencies": {
+    "@react-three/fiber": "^9.7.0",
+    "framer-motion": "^12.43.0",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.25",
+    "next": "^16.2.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sharp": "^0.35.3",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@testing-library/jest-dom": "^7.0.0",
+    "@testing-library/react": "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^26.1.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@types/three": "^0.185.3",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.2.12",
+    "jsdom": "^29.1.1",
+    "postcss": "^8.5.25",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.10"
+  }
+}
